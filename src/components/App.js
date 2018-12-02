@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { database } from "firebase";
+import { database } from "../firebase";
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class App extends Component {
 
   onInputChange(e) {
     this.setState({
-      [e.target.value]: e.target.value
+      [e.target.name]: e.target.value
     });
   }
 
@@ -24,13 +24,13 @@ class App extends Component {
       title: this.state.title,
       body: this.state.body
     };
-    database.savePost(post);
+    database.push(post);
   }
 
   render() {
     return (
       <div className="container">
-        <form action="" onSubmit={this.onHandleSubmit}>
+        <form onSubmit={this.onHandleSubmit}>
           <div className="form-group">
             <input
               className="form-control"
